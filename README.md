@@ -6,4 +6,4 @@ Oluwatobiloba Ogunbi 300202843\
 William Beaupre 300174392\
 Mariam Radwan 8222176\
 Sanchit Pokharel 300062001\
-Jaleelah Ammar 300174391\
+Jaleelah Ammar 300174391
