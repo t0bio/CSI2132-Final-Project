@@ -72,3 +72,8 @@ class Invoice(models.Model):
     discount = models.IntegerField()
     penalty = models.IntegerField()
     insurance_claim_id = models.ForeignKey(Insurance_claim)
+    
+class Insurance_claim(models.Model):
+    claim_id = models.IntegerField(primary_key=True)
+    claim_amount = models.IntegerField()
+    insurance_company = models.CharField(max_length=50)
