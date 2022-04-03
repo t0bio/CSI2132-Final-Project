@@ -17,3 +17,13 @@ class User(models.Model):
     gender = models.CharField(max_length=25)
     email_address = models.CharField(max_length=50)
     date_of_birth = models.DateField()
+    
+class Patient(models.Model):
+    patient_id = models.IntegerField(primary_key=True)
+    insurance = models.IntegerField()
+    health_card_no = models.IntegerField()
+    user_id = models.IntegerField(models.ForeignKey(User, on_delete=models.CASCADE))
+
+
+    
+    
