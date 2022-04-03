@@ -81,6 +81,7 @@ CREATE TABLE appointment (
   PRIMARY KEY (procedure_id),
   Foreign key (appointment_id) references appointment (appointment_id));
   FOREIGN KEY (invoice_id) REFERENCES invoice (invoice_id);
+  FOREIGN KEY (bill_id) REFERENCES patient_billing (bill_id);
  
 
   create table review(
