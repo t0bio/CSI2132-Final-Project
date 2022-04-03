@@ -1,0 +1,11 @@
+from django.urls import URLPattern, path
+from . import views
+
+#Define paths to our different webpages
+#URL that defines which view to go to
+
+urlpatterns = [
+    #When we are in the homepage, it will render index function in views.py
+    path("", views.index, name="index"),
+    path("employee/", views.employee, name="employee")
+]
