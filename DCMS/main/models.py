@@ -95,7 +95,6 @@ class Invoice(models.Model):
     penalty = models.IntegerField()
     insurance_claim_id = models.ForeignKey(Insurance_claim)
 
-
 class Patient_billing(models.Model):
      bill_id = models.IntegerField(primary_key=True)
      appointment_id = models.ForeignKey(Appointment, on_delete = models.CASCADE)
@@ -104,5 +103,6 @@ class Patient_billing(models.Model):
      insurance_claim_id = models.ForeignKey(Insurance_claim, on_delete = models.CASCADE)
      payment_type = models.CharField(max_length = 50)
      total_amount = models.FloatField()
+
 
 
