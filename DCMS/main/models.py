@@ -21,13 +21,13 @@ class Patient(models.Model):
     patient_id = models.IntegerField(primary_key=True)
     insurance = models.IntegerField()
     health_card_no = models.IntegerField()
-    user_id = models.IntegerField(models.ForeignKey(User, on_delete=models.CASCADE))
+    user_id = models.ForeignKey('User', on_delete=models.CASCADE)
 
 class Employee(models.Model):
     employee_id = models.IntegerField(primary_key=True)
     employee_type = models.CharField(max_length=50)
     salary = models.IntegerField()
-    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    user_id = models.ForeignKey('User', on_delete = models.CASCADE)
 
 class Appointment(models.Model):
     appointment_id = models.IntegerField(primary_key = True)
@@ -37,8 +37,8 @@ class Appointment(models.Model):
     appointment_type = models.CharField(max_length=25)
     status = models.CharField(max_length=25)
     room_assigned = models.IntegerField()
-    employee_id = models.IntegerField(models.ForeignKey(Employee, on_delete=models.CASCADE))
-    patient_id = models.IntegerField(models.ForeignKey(Patient, on_delete=models.CASCADE))
+    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
 
 class Appointment_Procedure(models.Model):
     procedure_id = models.IntegerField(primary_key=True,null=False)
@@ -54,7 +54,7 @@ class Appointment_Procedure(models.Model):
     insurance_charge = models.FloatField()
     total_charge = models.FloatField()
     bill_id = models.IntegerField()
-    appointment_id = models.IntegerField(models.ForeignKey(Appointment, on_delete=models.CASCADE))
+    appointment_id = models.ForeignKey('Appointment', on_delete=models.CASCADE)
 
 class Review(models.Model):
     review_id = models.IntegerField(primary_key=True)
@@ -62,21 +62,21 @@ class Review(models.Model):
     professionalism = models.CharField(max_length=500)
     cleanliness = models.CharField(max_length=500)
     value = models.IntegerField()
-    patient_id = models.ForeignKey(Patient)
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
     
 class Treatment(models.Model):
     treatment_id = models.IntegerField(primary_key=True)
     treatment_type = models.CharField(max_length=20)
-    appointment_type = models.ForeignKey(Appointment)  
+    appointment_type = models.ForeignKey('Appointment', on_delete=models.CASCADE)  
     
 class Patient_record(models.Model):
     patient_record_id = models.IntegerField(primary_key=True)
-    patient_id = models.ForeignKey(Patient)
+    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
     medication = models.CharField(max_length=100)
     symptoms = models.CharField(max_length=100)
     tooth = models.CharField(max_length=100)
     comments = models.CharField(max_length=100)
-    treatment_id = models.ForeignKey(Treatment)
+    treatment_id = models.ForeignKey('Treatment', on_delete=models.CASCADE)
 
 class Insurance_claim(models.Model):
     claim_id = models.IntegerField(primary_key=True)
@@ -85,21 +85,21 @@ class Insurance_claim(models.Model):
   
 class Invoice(models.Model):
     invoice_id = models.IntegerField(primary_key=True)
-    patient_id = models.ForeignKey(Patient)
+    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
     date_of_issue = models.DateField()
     patient_charge = models.IntegerField()
     insurance_charge = models.FloatField()
     total_fee_charge = models.FloatField()
     discount = models.FloatField()
     penalty = models.FloatField()
-    insurance_claim_id = models.ForeignKey(Insurance_claim)
+    insurance_claim_id = models.ForeignKey('Insurance_claim', on_delete=models.CASCADE)
 
 class Patient_billing(models.Model):
      bill_id = models.IntegerField(primary_key=True)
      appointment_id = models.ForeignKey(Appointment, on_delete = models.CASCADE)
      patient_portion = models.FloatField()
      insurance_portion = models.FloatField()
-     insurance_claim_id = models.ForeignKey(Insurance_claim, on_delete = models.CASCADE)
+     insurance_claim_id = models.ForeignKey('Insurance_claim', on_delete = models.CASCADE)
      payment_type = models.CharField(max_length = 50)
      total_amount = models.FloatField()
 
@@ -108,4 +108,4 @@ class Fee_Charge(models.Model):
     procedure_id = models.IntegerField()
     fee_code = models.IntegerField()
     charge = models.IntegerField()
-    procedure_id = models.ForeignKey(Appointment_Procedure,on_delete=models.CASCADE)
+    procedure_id = models.ForeignKey('Appointment_Procedure',on_delete=models.CASCADE)
