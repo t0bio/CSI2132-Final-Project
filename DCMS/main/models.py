@@ -40,5 +40,20 @@ class Appointment_Procedure(models.Model):
     bill_id = models.IntegerField()
     appointment_id = models.IntegerField(models.ForeignKey(Appointment, on_delete=models.CASCADE))
 
+class Review(models.Model):
+    review_id = models.IntegerField(primary_key=True)
+    communication = models.CharField(max_length=500)
+    professionalism = models.CharField(max_length=500)
+    cleanliness = models.CharField(max_length=500)
+    value = models.IntegerField()
+    patient_id = models.ForeignKey(Patient)
     
+class Patient_record(models.Model):
+    patient_record_id = models.IntegerField(primary_key=True)
+    patient_id = models.ForeignKey(Patient)
+    medication = models.CharField(max_length=100)
+    symptoms = models.CharField(max_length=100)
+    tooth = models.CharField(max_length=100)
+    comments = models.CharField(max_length=100)
+    treatment_id = models.ForeignKey(Treatment_id)  
     
