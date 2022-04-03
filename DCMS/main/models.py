@@ -48,6 +48,11 @@ class Review(models.Model):
     value = models.IntegerField()
     patient_id = models.ForeignKey(Patient)
     
+class Treatment(models.Model):
+    treatment_id = models.IntegerField(primary_key=True)
+    treatment_type = models.CharField(max_length=20)
+    appointment_type = models.ForeignKey(Appointment)  
+    
 class Patient_record(models.Model):
     patient_record_id = models.IntegerField(primary_key=True)
     patient_id = models.ForeignKey(Patient)
@@ -55,9 +60,5 @@ class Patient_record(models.Model):
     symptoms = models.CharField(max_length=100)
     tooth = models.CharField(max_length=100)
     comments = models.CharField(max_length=100)
-    treatment_id = models.ForeignKey(Treatment_id)  
+    treatment_id = models.ForeignKey(Treatment)
   
-class Treatment(models.Model):
-    treatment_id = models.IntegerField(primary_key=True)
-    treatment_type = models.CharField(max_length=20)
-    appointment_type = models.ForeignKey(Appointment)  
