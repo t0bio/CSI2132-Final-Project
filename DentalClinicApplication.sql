@@ -39,7 +39,7 @@ Primary KEY (phone_number, user_id),
 Foreign Key (user_id) references user (user_id)
 );
 
-Create Table Branch(
+Create Table branch(
 branch_id int NOT NULL,
 city varchar (50),
 manager_id int,
