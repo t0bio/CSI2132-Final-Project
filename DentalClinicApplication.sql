@@ -143,8 +143,8 @@ primary key (claim_id)
   payment_type varchar(20) DEFAULT NULL,
   total_amount int DEFAULT NULL,
   PRIMARY KEY (bill_id),
-  Foreign key (appointment_id) references appointment (appointment_id));
-  FOREIGN KEY (insurance_claim_id) REFERENCES insurance_claim (claim_id); 
+  Foreign key (appointment_id) references appointment (appointment_id);
+  FOREIGN KEY (insurance_claim_id) REFERENCES insurance_claim (claim_id)); 
   
   CREATE TABLE patient_record (
   patient_record_id int NOT NULL,
