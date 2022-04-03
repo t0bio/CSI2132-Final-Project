@@ -50,9 +50,9 @@ class Appointment_Procedure(models.Model):
     description = models.CharField(max_length=500)
     tooth_involved = models.CharField(max_length=500)
     amount_of_procedure = models.IntegerField()
-    patient_charge = models.IntegerField()
-    insurance_charge = models.IntegerField()
-    total_charge = models.IntegerField()
+    patient_charge = models.FloatField()
+    insurance_charge = models.FloatField()
+    total_charge = models.FloatField()
     bill_id = models.IntegerField()
     appointment_id = models.IntegerField(models.ForeignKey(Appointment, on_delete=models.CASCADE))
 
@@ -80,7 +80,7 @@ class Patient_record(models.Model):
 
 class Insurance_claim(models.Model):
     claim_id = models.IntegerField(primary_key=True)
-    claim_amount = models.IntegerField()
+    claim_amount = models.FloatField()
     insurance_company = models.CharField(max_length=50)
   
 class Invoice(models.Model):
@@ -88,10 +88,10 @@ class Invoice(models.Model):
     patient_id = models.ForeignKey(Patient)
     date_of_issue = models.DateField()
     patient_charge = models.IntegerField()
-    insurance_charge = models.IntegerField()
-    total_fee_charge = models.IntegerField()
-    discount = models.IntegerField()
-    penalty = models.IntegerField()
+    insurance_charge = models.FloatField()
+    total_fee_charge = models.FloatField()
+    discount = models.FloatField()
+    penalty = models.FloatField()
     insurance_claim_id = models.ForeignKey(Insurance_claim)
 
 class Patient_billing(models.Model):
