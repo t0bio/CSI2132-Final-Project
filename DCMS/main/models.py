@@ -77,3 +77,15 @@ class Insurance_claim(models.Model):
     claim_id = models.IntegerField(primary_key=True)
     claim_amount = models.IntegerField()
     insurance_company = models.CharField(max_length=50)
+
+
+class Appointment(modles.Model):
+    appointment_id = models.IntegerField(primary_key = True)
+    starttime = models.TimeField()
+    appointment_date = models.DateField()
+    endtime = models.TimeField()
+    appointment_type = models.CharField(max_length=25)
+    status = models.CharField(max_length=25)
+    room_assigned = models.IntegerField()
+    employee_id = models.IntegerField(models.ForeignKey(Employee, on_delete=models.CASCADE))
+    patient_id = models.IntegerField(models.ForeignKey(Patient, on_delete=models.CASCADE))
