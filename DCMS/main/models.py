@@ -24,6 +24,23 @@ class Patient(models.Model):
     health_card_no = models.IntegerField()
     user_id = models.IntegerField(models.ForeignKey(User, on_delete=models.CASCADE))
 
+class Employee(models.Model):
+    employee_id = models.IntegerField(primary_key=True)
+    employee_type = models.CharField(max_length=50)
+    salary = models.IntegerField()
+    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+
+class Appointment(models.Model):
+    appointment_id = models.IntegerField(primary_key = True)
+    starttime = models.TimeField()
+    appointment_date = models.DateField()
+    endtime = models.TimeField()
+    appointment_type = models.CharField(max_length=25)
+    status = models.CharField(max_length=25)
+    room_assigned = models.IntegerField()
+    employee_id = models.IntegerField(models.ForeignKey(Employee, on_delete=models.CASCADE))
+    patient_id = models.IntegerField(models.ForeignKey(Patient, on_delete=models.CASCADE))
+
 class Appointment_Procedure(models.Model):
     procedure_id = models.IntegerField(primary_key=True,null=False)
     appointment_id = models.IntegerField()
@@ -61,6 +78,11 @@ class Patient_record(models.Model):
     tooth = models.CharField(max_length=100)
     comments = models.CharField(max_length=100)
     treatment_id = models.ForeignKey(Treatment)
+
+class Insurance_claim(models.Model):
+    claim_id = models.IntegerField(primary_key=True)
+    claim_amount = models.IntegerField()
+    insurance_company = models.CharField(max_length=50)
   
 class Invoice(models.Model):
     invoice_id = models.IntegerField(primary_key=True)
@@ -72,20 +94,15 @@ class Invoice(models.Model):
     discount = models.IntegerField()
     penalty = models.IntegerField()
     insurance_claim_id = models.ForeignKey(Insurance_claim)
-    
-class Insurance_claim(models.Model):
-    claim_id = models.IntegerField(primary_key=True)
-    claim_amount = models.IntegerField()
-    insurance_company = models.CharField(max_length=50)
 
 
-class Appointment(modles.Model):
-    appointment_id = models.IntegerField(primary_key = True)
-    starttime = models.TimeField()
-    appointment_date = models.DateField()
-    endtime = models.TimeField()
-    appointment_type = models.CharField(max_length=25)
-    status = models.CharField(max_length=25)
-    room_assigned = models.IntegerField()
-    employee_id = models.IntegerField(models.ForeignKey(Employee, on_delete=models.CASCADE))
-    patient_id = models.IntegerField(models.ForeignKey(Patient, on_delete=models.CASCADE))
+class Patient_billing(models.Model):
+     bill_id = models.IntegerField(primary_key=True)
+     appointment_id = models.ForeignKey(Appointment, on_delete = models.CASCADE)
+     patient_portion = models.FloatField()
+     insurance_portion = models.FloatField()
+     insurance_claim_id = models.ForeignKey(Insurance_claim, on_delete = models.CASCADE)
+     payment_type = models.CharField(max_length = 50)
+     total_amount = models.FloatField()
+
+
