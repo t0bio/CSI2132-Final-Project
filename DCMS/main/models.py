@@ -24,6 +24,21 @@ class Patient(models.Model):
     health_card_no = models.IntegerField()
     user_id = models.IntegerField(models.ForeignKey(User, on_delete=models.CASCADE))
 
+class Appointment_Procedure(models.Model):
+    procedure_id = models.IntegerField(primary_key=True,null=False)
+    appointment_id = models.IntegerField()
+    procedure_date = models.DateTimeField()
+    invoice_id = models.IntegerField()
+    procedure_code = models.IntegerField()
+    procedure_type = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    tooth_involved = models.CharField(max_length=500)
+    amount_of_procedure = models.IntegerField()
+    patient_charge = models.IntegerField()
+    insurance_charge = models.IntegerField()
+    total_charge = models.IntegerField()
+    bill_id = models.IntegerField()
+    appointment_id = models.IntegerField(models.ForeignKey(Appointment, on_delete=models.CASCADE))
 
     
     
