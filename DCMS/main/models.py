@@ -37,7 +37,7 @@ class Appointment(models.Model):
     appointment_type = models.CharField(max_length=25)
     status = models.CharField(max_length=25)
     room_assigned = models.IntegerField()
-    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    employee_id = models.ForeignKey('Employee', on_delete=models.CASCADE)
     patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
 
 class Appointment_Procedure(models.Model):
@@ -62,7 +62,7 @@ class Review(models.Model):
     professionalism = models.CharField(max_length=500)
     cleanliness = models.CharField(max_length=500)
     value = models.IntegerField()
-    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
     
 class Treatment(models.Model):
     treatment_id = models.IntegerField(primary_key=True)
@@ -96,7 +96,7 @@ class Invoice(models.Model):
 
 class Patient_billing(models.Model):
      bill_id = models.IntegerField(primary_key=True)
-     appointment_id = models.ForeignKey(Appointment, on_delete = models.CASCADE)
+     appointment_id = models.ForeignKey('Appointment', on_delete = models.CASCADE)
      patient_portion = models.FloatField()
      insurance_portion = models.FloatField()
      insurance_claim_id = models.ForeignKey('Insurance_claim', on_delete = models.CASCADE)
