@@ -27,7 +27,7 @@ class Patient(models.Model):
 class Appointment_Procedure(models.Model):
     procedure_id = models.IntegerField(primary_key=True,null=False)
     appointment_id = models.IntegerField()
-    procedure_date = models.DateTimeField()
+    procedure_date = models.DateField()
     invoice_id = models.IntegerField()
     procedure_code = models.IntegerField()
     procedure_type = models.CharField(max_length=500)
