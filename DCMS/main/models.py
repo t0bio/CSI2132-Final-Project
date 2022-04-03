@@ -56,4 +56,8 @@ class Patient_record(models.Model):
     tooth = models.CharField(max_length=100)
     comments = models.CharField(max_length=100)
     treatment_id = models.ForeignKey(Treatment_id)  
-    
+  
+class Treatment(models.Model):
+    treatment_id = models.IntegerField(primary_key=True)
+    treatment_type = models.CharField(max_length=20)
+    appointment_type = models.ForeignKey(Appointment)  
