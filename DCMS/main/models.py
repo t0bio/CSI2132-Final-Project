@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class User(models.Model):
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=50)
@@ -103,6 +102,5 @@ class Patient_billing(models.Model):
      insurance_claim_id = models.ForeignKey(Insurance_claim, on_delete = models.CASCADE)
      payment_type = models.CharField(max_length = 50)
      total_amount = models.FloatField()
-
 
 
