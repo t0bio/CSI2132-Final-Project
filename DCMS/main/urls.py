@@ -7,5 +7,7 @@ from . import views
 urlpatterns = [
     #When we are in the homepage, it will render index function in views.py
     path("", views.index, name="index"),
-    path("employee/", views.employee, name="employee")
+    path("employee/", views.employee, name="employee"),
+    path("receptionist/", views.receptionist, name="receptionist"),
+    path("patient/", views.patient, name="patient"),
 ]
