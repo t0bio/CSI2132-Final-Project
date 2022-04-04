@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import User
 
-def index(response):
-    return HttpResponse("<h1>Dental Clinic Home Page</h1>")
+def index(response, id):
+    ls=User.objects.get(id=id)
+    return render(response, "main/base.html", {"name":ls.name})
 
 def employee(response):
     return HttpResponse("<h1>Employee Page</h1>")
