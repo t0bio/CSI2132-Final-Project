@@ -1,7 +1,8 @@
+from gzip import READ
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import User
-from .forms import RegisterUser
+from .models import Employee, Patient, User
+from .forms import RegisterUser, RegisterPatient
 
 def index(response):
     return render(response, "main/home.html", {})
@@ -14,6 +15,24 @@ def receptionist(response):
 
 def patient(response):
     return HttpResponse("<h1>Patient Page</h1>")
+
+
+def registerPatient(response):
+    if response.method == "POST":
+        form = RegisterPatient(response.POST)
+    
+        if form.is_valid():
+            id = form.cleaned_data["patient_id"]
+            insur = form.cleaned_data["insurance"]
+            hcn = form.cleaned_data["health_card_num"]
+            userInfo = form.cleaned_data["user"]
+
+            p = Patient(patient_id = id, insurance = insur, health_card_no = hcn, user = userInfo)
+            p.save()
+    else:
+        form = RegisterPatient()
+    return render(response, "main/registerPatient.html", {"form":form})
+
 
 def register(response):
     if response.method == "POST":
