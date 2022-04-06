@@ -1,9 +1,10 @@
 from django.db import models
 
+
 # Create your models here.
 
 class User(models.Model):
-    id = models.IntegerField(primary_key=True)
+    #id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -17,21 +18,37 @@ class User(models.Model):
     email_address = models.CharField(max_length=50)
     date_of_birth = models.DateField()
 
+
+    def __str__(self):
+        fullName = self.first_name + " " + self.last_name
+        return fullName
+
     
     
 class Patient(models.Model):
     patient_id = models.IntegerField(primary_key=True)
     insurance = models.IntegerField()
     health_card_no = models.IntegerField()
-    user_id = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
 
+    def __str__(self):
+        patientName = self.user.first_name + " " + self.user.last_name
+        return patientName
+    
+
+    
     
 
 class Employee(models.Model):
     employee_id = models.IntegerField(primary_key=True)
     employee_type = models.CharField(max_length=50)
     salary = models.IntegerField()
-    user_id = models.ForeignKey('User', on_delete = models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+
+    def __str__(self):
+        employeeName = self.user.first_name + " " + self.user.last_name
+        return employeeName
+    
     
     
 
@@ -45,14 +62,17 @@ class Appointment(models.Model):
     appointment_type = models.CharField(max_length=25)
     status = models.CharField(max_length=25)
     room_assigned = models.IntegerField()
-    employee_id = models.ForeignKey('Employee', on_delete=models.CASCADE)
-    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+
+    def __str__(self):
+        appointmentName = self.patient.user.first_name + " " + self.appointment_type + " with Dentist " + self.employee.user.first_name
+        return appointmentName
 
     
 
 class Appointment_Procedure(models.Model):
     procedure_id = models.IntegerField(primary_key=True,null=False)
-    appointment_id = models.IntegerField()
     procedure_date = models.DateField()
     invoice_id = models.IntegerField()
     procedure_code = models.IntegerField()
@@ -64,7 +84,12 @@ class Appointment_Procedure(models.Model):
     insurance_charge = models.FloatField()
     total_charge = models.FloatField()
     bill_id = models.IntegerField()
-    appointment_id = models.ForeignKey('Appointment', on_delete=models.CASCADE)
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        appointmnetProcedure = self.procedure_type + "with Patient " + self.appointment.patient.user.first_name
+        return app
 
     
 
@@ -76,23 +101,30 @@ class Review(models.Model):
     value = models.IntegerField()
     patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.text
     
 class Treatment(models.Model):
     treatment_id = models.IntegerField(primary_key=True)
     treatment_type = models.CharField(max_length=20)
-    appointment_type = models.ForeignKey('Appointment', on_delete=models.CASCADE)
+    appointment = models.ForeignKey('Appointment', on_delete=models.CASCADE)
+
+    def __str__(self):
+        treatment = self.treatment_type 
+        return treatment
+
+
    
 class Patient_record(models.Model):
     patient_record_id = models.IntegerField(primary_key=True)
-    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
     medication = models.CharField(max_length=100)
     symptoms = models.CharField(max_length=100)
     tooth = models.CharField(max_length=100)
     comments = models.CharField(max_length=100)
     treatment_id = models.ForeignKey('Treatment', on_delete=models.CASCADE)
-    
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+
+    def __str__(self):
+        patientRecord = "Patient Record of " + self.patient.user.first_name
+        return patientRecord
 
 class Insurance_claim(models.Model):
     claim_id = models.IntegerField(primary_key=True)

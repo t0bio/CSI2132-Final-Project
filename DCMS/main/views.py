@@ -2,9 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import User
 
-def index(response, id):
-    ls=User.objects.get(id=id)
-    return render(response, "main/base.html", {"name":ls.name})
+def index(response):
+    return render(response, "main/home.html", {})
 
 def employee(response):
     return HttpResponse("<h1>Employee Page</h1>")
