@@ -88,8 +88,8 @@ class Appointment_Procedure(models.Model):
 
 
     def __str__(self):
-        appointmnetProcedure = self.procedure_type + "with Patient " + self.appointment.patient.user.first_name
-        return app
+        appProcedure = self.procedure_type + "with Patient " + self.appointment.patient.user.first_name
+        return appProcedure
 
     
 
