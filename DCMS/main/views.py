@@ -17,6 +17,10 @@ def receptionist(response):
 def patient(response):
     return HttpResponse("<h1>Patient Page</h1>")
 
+def searchUser(response):
+    return render(response, "main/search_user.html", {})
+
+
 def registerEmployee(response):
     if response.method == "POST":
         form = RegisterEmployee(response.POST)
