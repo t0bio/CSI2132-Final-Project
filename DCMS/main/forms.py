@@ -2,6 +2,7 @@ from cProfile import label
 from pyexpat import model
 from unittest.util import _MAX_LENGTH
 from django import forms
+
 from .models import User
 
 class RegisterUser(forms.Form):
@@ -18,10 +19,16 @@ class RegisterUser(forms.Form):
     email_address = forms.EmailField()
     date_of_birth = forms.DateField()
 
-
-
 class RegisterPatient(forms.Form):
     patient_id = forms.IntegerField(label= "Patient ID")
     insurance = forms.IntegerField(label = "Insurance Number")
     health_card_num = forms.IntegerField(label = "Health Card Number")
     user = forms.ModelChoiceField(queryset= User.objects.all())
+
+class RegisterEmployee(forms.Form):
+    employee_id = forms.IntegerField(label = "Employee ID")
+    employee_type = forms.CharField(label = "Employee Type", max_length=50)
+    salary = forms.IntegerField()
+    user = forms.ModelChoiceField(queryset= User.objects.all())
+
+    

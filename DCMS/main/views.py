@@ -1,8 +1,9 @@
 from gzip import READ
+from site import USER_BASE
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Employee, Patient, User
-from .forms import RegisterUser, RegisterPatient
+from .forms import RegisterUser, RegisterPatient, RegisterEmployee
 
 def index(response):
     return render(response, "main/home.html", {})
@@ -11,10 +12,27 @@ def employee(response):
     return HttpResponse("<h1>Employee Page</h1>")
 
 def receptionist(response):
-    return HttpResponse("<h1>Receptionist Page</h1>")
+     return render(response, "main/receptionistUI.html", {})
 
 def patient(response):
     return HttpResponse("<h1>Patient Page</h1>")
+
+def registerEmployee(response):
+    if response.method == "POST":
+        form = RegisterEmployee(response.POST)
+
+        if form.is_valid():
+            empId = form.cleaned_data["employee_id"]
+            empType = form.cleaned_data["employee_type"]
+            sal = form.cleaned_data["salary"]
+            userInfo = form.cleaned_data["user"]
+
+            e = Employee(employee_id = empId, employee_type = empType, salary = sal, user=userInfo)
+            e.save()
+    else:
+        form = RegisterEmployee()
+    
+    return render(response, "main/registerEmployee.html", {"form":form})
 
 
 def registerPatient(response):
