@@ -1,7 +1,5 @@
-from gzip import READ
-from site import USER_BASE
-from urllib import request
-from django.shortcuts import render
+
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Employee, Patient, User
 from .forms import RegisterUser, RegisterPatient, RegisterEmployee
@@ -97,6 +95,16 @@ def register(response):
 def show_user(request, user_id):
     user = User.objects.get(pk=user_id)
     return render(request, "main/show_user.html", {"user":user})
+
+
+def update_user(request, user_id):
+    user = User.objects.get(pk=user_id)
+    form = RegisterUser(request.POST or None, instance=user )
+
+    if form.is_valid():
+        form.save()
+        return redirect('receptionist')
+    return render(request, "main/update_user.html", {"user":user, "form":form})
 
 
 

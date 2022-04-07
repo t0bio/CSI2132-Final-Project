@@ -1,0 +1,17 @@
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<h1>Update User..</h1>
+<form action="" method = POST>
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <button type="submit" value="Update"> Update </button>
+
+
+</form>
+
+
+{% endblock %}
