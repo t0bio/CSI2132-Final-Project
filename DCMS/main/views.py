@@ -1,5 +1,6 @@
 from gzip import READ
 from site import USER_BASE
+from urllib import request
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Employee, Patient, User
@@ -17,8 +18,14 @@ def receptionist(response):
 def patient(response):
     return HttpResponse("<h1>Patient Page</h1>")
 
-def searchUser(response):
-    return render(response, "main/search_user.html", {})
+def searchUser(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        searched_user = User.objects.filter(last_name__contains = searched)
+        return render(request, "main/search_user.html", {'searched':searched, 'searched_user':searched_user})
+    
+    else:
+        return render(request, "main/search_user.html", {})
 
 
 def registerEmployee(response):

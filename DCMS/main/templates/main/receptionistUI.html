@@ -9,7 +9,11 @@
 <button><a href="/registeremployee">Add New Employee</a></button>
 <button><a href="/registerpatient">Add New Patient</a></button>
 
-<button><a href="/registerpatient">Add New Patient</a></button>
+<form class="search_class" method="POST" action="{% url 'searchuser' %}" >
+    {% csrf_token %}
+    <input class="search_class" type="search" name="searched" placeholder="Search Last Name"> 
+    <button class="search_class" type="submit"> Search </button>
+</form>
 
 
 

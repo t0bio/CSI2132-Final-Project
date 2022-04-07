@@ -3,5 +3,20 @@
 
 
 {% block content %}
-<h1>You Searched for...</h1>
+    <center>
+
+        {% if searched %}
+        <h1>You Searched for {{searched}}</h1>
+        <br>
+        {% for user in searched_user%}
+            {{user}}
+            <button>Edit</button>
+            <br>
+        {% endfor %}
+        {%else%}
+        <h1>Did not Search</h1>
+
+        {% endif %}
+    </center>
+
 {% endblock %}
