@@ -1,17 +1,23 @@
 <!--Extends Base Template-->
 {% extends 'main/base.html' %}
-
-
+{% load crispy_forms_tags %}
 {% block content %}
-<h1>Update User..</h1>
-<form action="" method = POST>
-    {% csrf_token %}
-    {{form.as_p}}
-    <br>
-    <button type="submit" value="Update"> Update </button>
 
+<center>
+    <h1>Update User Info</h1>
+</center>
 
-</form>
+<div class ="container">
+    <form action="" method = POST>
+        {% csrf_token %}
+        {{form|crispy}}
+        <br>
+        <button type="submit" value="Update"> Update </button>
+    
+    </form>
+
+</div>
+
 
 
 {% endblock %}
