@@ -2,12 +2,20 @@
 
 {% block content %}
 
-<h1>Register Patient</h1>
+{% load crispy_forms_tags %}
+<center>
+    <h1>Register Patient</h1>
+</center>
 
-<form method="POST" action="/registerpatient/">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit", name="save">Create New</button>
-</form>
+<div class="container">
+
+    <form method="POST" action="/registerpatient/">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit", name="save">Create New</button>
+    </form>
+
+</div>
+
 
 {%endblock%}

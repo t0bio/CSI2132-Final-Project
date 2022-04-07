@@ -3,22 +3,57 @@
 
 
 {% block content %}
+
 <center>
-    <h1>User Information: </h1>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Middle Name: {{ user.middle_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <p>Street Number: {{ user.street_number }}</p>
-    <p>Street Name: {{ user.street_name }}</p>
-    <p>House Number: {{ user.house_number }}</p>
-    <p>City: {{ user.city }}</p>
-    <p>Province: {{ user.province }}</p>
-    <p>SSN: {{ user.ssn }}</p>
-    <p>Gender: {{ user.gender }}</p>
-    <p>Email Address: {{ user.email_address }}</p>
-    <p>Date of Birth: {{ user.date_of_birth }}</p>
+
+    <h1>User Information</h1>
+    <br>
+</center>
+<div class="container-fluid">
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Street Number</th>
+            <th scope="col">Street Name</th>
+            <th scope="col">House Number</th>
+            <th scope="col">City</th>
+            <th scope="col">Provice</th>
+            <th scope="col">SSN</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.middle_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.street_number }}</td>
+            <td>{{ user.street_name }}</td>
+            <td>{{ user.house_number }}</td>
+            <td>{{ user.city }}</td>
+            <td>{{ user.province }}</td>
+            <td>{{ user.ssn }}</td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.email_address }}</td>
+            <td>{{ user.date_of_birth }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+<center>
 
     <button><a href="/receptionist">Return</a></button>
+
+
 </center>
+    
 
 {% endblock %}
