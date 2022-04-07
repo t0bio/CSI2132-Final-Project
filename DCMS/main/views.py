@@ -94,4 +94,10 @@ def register(response):
     return render(response, "main/registerUser.html", {"form":form})
 
 
+def show_user(request, user_id):
+    user = User.objects.get(pk=user_id)
+    return render(request, "main/show_user.html", {"user":user})
+
+
+
             

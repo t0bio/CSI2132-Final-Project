@@ -9,7 +9,7 @@
         <h1>You Searched for {{searched}}</h1>
         <br>
         {% for user in searched_user%}
-            {{user}}
+        <a href="{% url 'show_user' user.id%}">{{user}}</a>
             <button>Edit</button>
             <br>
         {% endfor %}

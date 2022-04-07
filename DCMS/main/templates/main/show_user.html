@@ -1,0 +1,24 @@
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<center>
+    <h1>User Information: </h1>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Middle Name: {{ user.middle_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Street Number: {{ user.street_number }}</p>
+    <p>Street Name: {{ user.street_name }}</p>
+    <p>House Number: {{ user.house_number }}</p>
+    <p>City: {{ user.city }}</p>
+    <p>Province: {{ user.province }}</p>
+    <p>SSN: {{ user.ssn }}</p>
+    <p>Gender: {{ user.gender }}</p>
+    <p>Email Address: {{ user.email_address }}</p>
+    <p>Date of Birth: {{ user.date_of_birth }}</p>
+
+    <button><a href="/receptionist">Return</a></button>
+</center>
+
+{% endblock %}

@@ -14,5 +14,6 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     path("registerpatient/", views.registerPatient, name = "registerpatient"),
     path("registeremployee/", views.registerEmployee, name = "registeremployee"),
-    path("searchuser/", views.searchUser, name = "searchuser")
+    path("searchuser/", views.searchUser, name = "searchuser"), 
+    path('show_user/<user_id>', views.show_user, name="show_user")
 ]
