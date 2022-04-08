@@ -50,9 +50,6 @@ class Employee(models.Model):
         return employeeName
     
     
-    
-
-    
 
 class Appointment(models.Model):
     appointment_id = models.IntegerField(primary_key = True)
