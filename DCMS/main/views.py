@@ -1,8 +1,8 @@
 
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Employee, Patient, User
-from .forms import RegisterUser, RegisterPatient, RegisterEmployee
+from .models import Appointment, Employee, Patient, User
+from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
 
 def index(response):
     return render(response, "main/home.html", {})
@@ -105,6 +105,36 @@ def update_user(request, user_id):
         form.save()
         return redirect('receptionist')
     return render(request, "main/update_user.html", {"user":user, "form":form})
+
+
+def set_appointment(request):
+    if request.method == "POST":
+        form = SetAppointment(request.POST)
+
+        if form.is_valid():
+            app_id = form.cleaned_data["appointment_id"]
+            st = form.cleaned_data["starttime"]
+            app_date = form.cleaned_data["appointment_date"]
+            et = form.cleaned_data["endtime"]
+            app_type = form.cleaned_data["appointment_type"]
+            s = form.cleaned_data["status"]
+            ra = form.cleaned_data["room_assigned"]
+            em = form.cleaned_data["employee"]
+            pat = form.cleaned_data["patient"]
+
+
+            app = Appointment(appointment_id = app_id, starttime = st,  appointment_date = app_date, 
+                endtime = et, appointment_type = app_type, 
+                status = s, room_assigned =ra, employee = em, 
+                patient = pat)
+
+            app.save()
+
+    else:
+        form = SetAppointment()
+
+    return render(request, "main/set_appointment.html", {"form":form})
+
 
 
 

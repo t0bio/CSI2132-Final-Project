@@ -1,5 +1,6 @@
+from dataclasses import fields
 from django import forms
-from .models import User, Patient, Employee
+from .models import User, Patient, Employee, Appointment
 
 class RegisterUser(forms.ModelForm):
     first_name = forms.CharField(label="First Name", max_length = 50)
@@ -43,5 +44,11 @@ class RegisterEmployee(forms.ModelForm):
     class Meta:
         model = Employee
         fields = '__all__'
+    
+class SetAppointment(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
+
 
     
