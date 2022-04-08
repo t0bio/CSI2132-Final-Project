@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-class User(models.Model):
+class Person(models.Model):
     #id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50)
@@ -29,10 +29,10 @@ class Patient(models.Model):
     patient_id = models.IntegerField(primary_key=True)
     insurance = models.IntegerField()
     health_card_no = models.IntegerField()
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    person = models.ForeignKey('Person', on_delete=models.CASCADE)
 
     def __str__(self):
-        patientName = self.user.first_name + " " + self.user.last_name
+        patientName = self.person.first_name + " " + self.person.last_name
         return patientName
     
 
@@ -43,10 +43,10 @@ class Employee(models.Model):
     employee_id = models.IntegerField(primary_key=True)
     employee_type = models.CharField(max_length=50)
     salary = models.IntegerField()
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    person = models.ForeignKey('Person', on_delete=models.CASCADE)
 
     def __str__(self):
-        employeeName = self.user.first_name + " " + self.user.last_name
+        employeeName = self.person.first_name + " " + self.person.last_name
         return employeeName
     
     
@@ -63,7 +63,7 @@ class Appointment(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
 
     def __str__(self):
-        appointmentName = self.patient.user.first_name + " " + self.appointment_type + " with Dentist " + self.employee.user.first_name
+        appointmentName = self.patient.person.first_name + " " + self.appointment_type + " with Dentist " + self.employee.person.first_name
         return appointmentName
 
     
@@ -85,7 +85,7 @@ class Appointment_Procedure(models.Model):
 
 
     def __str__(self):
-        appProcedure = self.procedure_type + "with Patient " + self.appointment.patient.user.first_name
+        appProcedure = self.procedure_type + "with Patient " + self.appointment.patient.person.first_name
         return appProcedure
 
     
@@ -120,7 +120,7 @@ class Patient_record(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
 
     def __str__(self):
-        patientRecord = "Patient Record of " + self.patient.user.first_name
+        patientRecord = "Patient Record of " + self.patient.person.first_name
         return patientRecord
 
 class Insurance_claim(models.Model):

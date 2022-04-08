@@ -1,6 +1,6 @@
 from dataclasses import fields
 from django import forms
-from .models import User, Patient, Employee, Appointment
+from .models import Person, Patient, Employee, Appointment
 
 class RegisterUser(forms.ModelForm):
     first_name = forms.CharField(label="First Name", max_length = 50)
@@ -17,30 +17,16 @@ class RegisterUser(forms.ModelForm):
     date_of_birth = forms.DateField()
 
     class Meta:
-        model = User
+        model = Person
         fields = '__all__'
 
 
-    
-
 class RegisterPatient(forms.ModelForm):
-    patient_id = forms.IntegerField(label= "Patient ID")
-    insurance = forms.IntegerField(label = "Insurance Number")
-    health_card_num = forms.IntegerField(label = "Health Card Number")
-    user = forms.ModelChoiceField(queryset= User.objects.all())
-
     class Meta:
         model = Patient
         fields = '__all__'
 
-
-
 class RegisterEmployee(forms.ModelForm):
-    employee_id = forms.IntegerField(label = "Employee ID")
-    employee_type = forms.CharField(label = "Employee Type", max_length=50)
-    salary = forms.IntegerField()
-    user = forms.ModelChoiceField(queryset= User.objects.all())
-
     class Meta:
         model = Employee
         fields = '__all__'

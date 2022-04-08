@@ -1,25 +1,25 @@
 
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Appointment, Employee, Patient, User
+from .models import Appointment, Employee, Patient, Person
 from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
 
 def index(response):
     return render(response, "main/home.html", {})
 
 def employee(response):
-    return HttpResponse("<h1>Employee Page</h1>")
+    return render(response, "main/employee.html", {})
 
 def receptionist(response):
      return render(response, "main/receptionistUI.html", {})
 
 def patient(response):
-    return HttpResponse("<h1>Patient Page</h1>")
+     return render(response, "main/patientUI.html", {})
 
 def searchUser(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        searched_user = User.objects.filter(last_name__contains = searched)
+        searched_user = Person.objects.filter(last_name__contains = searched)
         return render(request, "main/search_user.html", {'searched':searched, 'searched_user':searched_user})
     
     else:
@@ -34,9 +34,9 @@ def registerEmployee(response):
             empId = form.cleaned_data["employee_id"]
             empType = form.cleaned_data["employee_type"]
             sal = form.cleaned_data["salary"]
-            userInfo = form.cleaned_data["user"]
+            userInfo = form.cleaned_data["person"]
 
-            e = Employee(employee_id = empId, employee_type = empType, salary = sal, user=userInfo)
+            e = Employee(employee_id = empId, employee_type = empType, salary = sal, person=userInfo)
             e.save()
     else:
         form = RegisterEmployee()
@@ -51,10 +51,10 @@ def registerPatient(response):
         if form.is_valid():
             id = form.cleaned_data["patient_id"]
             insur = form.cleaned_data["insurance"]
-            hcn = form.cleaned_data["health_card_num"]
-            userInfo = form.cleaned_data["user"]
+            hcn = form.cleaned_data["health_card_no"]
+            userInfo = form.cleaned_data["person"]
 
-            p = Patient(patient_id = id, insurance = insur, health_card_no = hcn, user = userInfo)
+            p = Patient(patient_id = id, insurance = insur, health_card_no = hcn, person = userInfo)
             p.save()
     else:
         form = RegisterPatient()
@@ -79,7 +79,7 @@ def register(response):
             ea = form.cleaned_data["email_address"]
             dob = form.cleaned_data["date_of_birth"]
 
-            u = User(first_name = fn, middle_name = mn,  last_name = ln, 
+            u = Person(first_name = fn, middle_name = mn,  last_name = ln, 
                 street_number = snum, street_name = sna, 
                 house_number = hnum, city =c, province = p, 
                 ssn = ssn, gender = g, email_address = ea, date_of_birth = dob)
@@ -92,13 +92,13 @@ def register(response):
     return render(response, "main/registerUser.html", {"form":form})
 
 
-def show_user(request, user_id):
-    user = User.objects.get(pk=user_id)
+def show_user(request, person_id):
+    user = Person.objects.get(pk=person_id)
     return render(request, "main/show_user.html", {"user":user})
 
 
-def update_user(request, user_id):
-    user = User.objects.get(pk=user_id)
+def update_user(request, person_id):
+    user = Person.objects.get(pk=person_id)
     form = RegisterUser(request.POST or None, instance=user )
 
     if form.is_valid():

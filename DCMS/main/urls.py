@@ -15,7 +15,10 @@ urlpatterns = [
     path("registerpatient/", views.registerPatient, name = "registerpatient"),
     path("registeremployee/", views.registerEmployee, name = "registeremployee"),
     path("searchuser/", views.searchUser, name = "searchuser"), 
-    path('show_user/<user_id>', views.show_user, name="show_user"),
-    path('update_user/<user_id>', views.update_user, name="update_user"),
+    path('show_user/<person_id>', views.show_user, name="show_user"),
+    path('update_user/<person_id>', views.update_user, name="update_user"),
     path('set_appointment', views.set_appointment, name="set_appointment"),
+    path('employee', views.employee, name = "employee"),
+    path('patientUI', views.patient, name = "patientUI"),
+    
 ]
