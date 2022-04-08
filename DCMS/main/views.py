@@ -4,8 +4,9 @@ from django.http import HttpResponse
 from .models import Appointment, Employee, Patient, Person
 from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
 from django.contrib.auth.decorators import login_required
+from .decorators import allowed_users, redirect_view
 
-
+@redirect_view
 def index(response):
     return render(response, "main/home.html", {})
 
@@ -13,6 +14,7 @@ def employee(response):
     return render(response, "main/employee.html", {})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def receptionist(response):
      return render(response, "main/receptionistUI.html", {})
 
