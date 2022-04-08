@@ -19,5 +19,6 @@ from authentication import views as v
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('createaccount/',v.createAccount, name="createaccount"),
-    path('', include("main.urls"))
+    path('', include("main.urls")),
+    path('', include("django.contrib.auth.urls")),
 ]
