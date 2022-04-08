@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 
 # Create your models here.
@@ -26,6 +28,7 @@ class Person(models.Model):
     
     
 class Patient(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     patient_id = models.IntegerField(primary_key=True)
     insurance = models.IntegerField()
     health_card_no = models.IntegerField()
@@ -40,6 +43,7 @@ class Patient(models.Model):
     
 
 class Employee(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     employee_id = models.IntegerField(primary_key=True)
     employee_type = models.CharField(max_length=50)
     salary = models.IntegerField()
