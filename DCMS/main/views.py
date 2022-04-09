@@ -1,15 +1,16 @@
-
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Appointment, Employee, Patient, Person
 from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
 from django.contrib.auth.decorators import login_required
-from .decorators import allowed_users, redirect_view
+from .decorators import allowed_users
 
-@redirect_view
+
 def index(response):
     return render(response, "main/home.html", {})
 
+@login_required
+@allowed_users(allowed_roles=['employee'])
 def employee(response):
     return render(response, "main/employee.html", {})
 
@@ -18,10 +19,13 @@ def employee(response):
 def receptionist(response):
      return render(response, "main/receptionistUI.html", {})
 
+@login_required
+@allowed_users(allowed_roles=['patient'])
 def patient(response):
      return render(response, "main/patientUI.html", {})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def searchUser(request):
     if request.method == "POST":
         searched = request.POST['searched']
@@ -32,6 +36,7 @@ def searchUser(request):
         return render(request, "main/search_user.html", {})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def registerEmployee(response):
     if response.method == "POST":
         form = RegisterEmployee(response.POST)
@@ -50,6 +55,7 @@ def registerEmployee(response):
     return render(response, "main/registerEmployee.html", {"form":form})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def registerPatient(response):
     if response.method == "POST":
         form = RegisterPatient(response.POST)
@@ -67,6 +73,7 @@ def registerPatient(response):
     return render(response, "main/registerPatient.html", {"form":form})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def register(response):
     if response.method == "POST":
         form = RegisterUser(response.POST)
@@ -98,11 +105,13 @@ def register(response):
     return render(response, "main/registerUser.html", {"form":form})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def show_user(request, person_id):
     user = Person.objects.get(pk=person_id)
     return render(request, "main/show_user.html", {"user":user})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def update_user(request, person_id):
     user = Person.objects.get(pk=person_id)
     form = RegisterUser(request.POST or None, instance=user )
@@ -113,6 +122,7 @@ def update_user(request, person_id):
     return render(request, "main/update_user.html", {"user":user, "form":form})
 
 @login_required
+@allowed_users(allowed_roles=['receptionist'])
 def set_appointment(request):
     if request.method == "POST":
         form = SetAppointment(request.POST)
