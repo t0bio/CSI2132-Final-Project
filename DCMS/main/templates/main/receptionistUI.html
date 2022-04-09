@@ -1,0 +1,33 @@
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<center>
+
+    <h1>Receptionist UI</h1>
+
+
+<button><a href="/register">Add New User</a></button>
+<button><a href="/registeremployee">Add New Employee</a></button>
+<button><a href="/registerpatient">Add New Patient</a></button>
+<button><a href="#">Edit Patient Information</a></button>
+<button><a href="/set_appointment">Set Patient Appointment</a></button>
+
+<br>
+<br>
+
+<form class="search_class" method="POST" action="{% url 'searchuser' %}" >
+    {% csrf_token %}
+    <input class="search_class" type="search" name="searched" placeholder="Search user by Last Name"> 
+    <button class="search_class" type="submit"> Search </button>
+</form>
+
+
+
+</center>
+
+
+
+{% endblock %}

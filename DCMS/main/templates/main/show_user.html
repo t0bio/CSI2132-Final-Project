@@ -1,0 +1,59 @@
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<center>
+
+    <h1>User Information</h1>
+    <br>
+</center>
+<div class="container-fluid">
+
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Street Number</th>
+            <th scope="col">Street Name</th>
+            <th scope="col">House Number</th>
+            <th scope="col">City</th>
+            <th scope="col">Provice</th>
+            <th scope="col">SSN</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.middle_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.street_number }}</td>
+            <td>{{ user.street_name }}</td>
+            <td>{{ user.house_number }}</td>
+            <td>{{ user.city }}</td>
+            <td>{{ user.province }}</td>
+            <td>{{ user.ssn }}</td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.email_address }}</td>
+            <td>{{ user.date_of_birth }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+<center>
+
+    <button><a href="/receptionist">Return</a></button>
+
+
+</center>
+    
+
+{% endblock %}

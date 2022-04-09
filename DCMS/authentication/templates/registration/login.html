@@ -1,0 +1,24 @@
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<center>
+    <h1>Login to Dental Clinic Management System</h1>
+</center>
+
+<div class="container">
+
+    <form action="" method = "POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type = "submit" class="btn-btn-success">Login</button>
+        <p>Don't Have an Account? Create One <a href="/createaccount">Here</a></p>
+    </form>
+
+</div>
+
+
+
+{% endblock %}
