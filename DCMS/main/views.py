@@ -25,6 +25,11 @@ def patient(response):
      return render(response, "main/patientUI.html", {})
 
 @login_required
+@allowed_users(allowed_roles=['patient'])
+def viewInfo(response):
+    return render(response, "main/viewInfo.html", {"user":response.user.patient})
+
+@login_required
 @allowed_users(allowed_roles=['receptionist'])
 def searchUser(request):
     if request.method == "POST":
