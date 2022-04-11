@@ -1,0 +1,50 @@
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<center>
+
+    <h1>Booked Appointments</h1>
+    <br>
+</center>
+<div class="container-fluid">
+
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+			<th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Employee</th>
+			
+          </tr>
+        </thead>
+        <tbody>
+		{% for appointment in appointments%}
+          <tr>
+            <td>{{ appointment.appointment_date }}</td>
+            <td>{{ appointment.starttime }}</td>
+            <td>{{ appointment.endtime }}</td>
+            <td>{{ appointment.appointment_type }}</td>
+            <td>{{ appointment.status }}</td>
+            <td>{{ appointment.employee }}</td>
+          </tr>
+		{% endfor %}
+        </tbody>
+      </table>
+
+</div>
+
+<center>
+
+    <button><a href="/patient">Return</a></button>
+
+
+</center>
+    
+
+{% endblock %}
