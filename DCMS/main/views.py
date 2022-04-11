@@ -28,6 +28,11 @@ def patient(response):
 @allowed_users(allowed_roles=['patient'])
 def viewInfo(response):
     return render(response, "main/viewInfo.html", {"user":response.user.patient})
+    
+@login_required
+@allowed_users(allowed_roles=['patient'])
+def viewAppointments(response):
+    return render(response, "main/viewAppointments.html", {"appointements":Appointment})
 
 @login_required
 @allowed_users(allowed_roles=['receptionist'])
