@@ -23,5 +23,7 @@ urlpatterns = [
     path('viewInfo/', views.viewInfo, name = "viewInfo"),
     path('viewAppointments/', views.viewAppointments, name = "viewAppointments"),
     path('viewInvoice/', views.viewInvoice, name = "viewInvoice"),
+    path('viewMedicalRecords/', views.viewMedicalRecords, name = "viewMedicalRecords"),
+    path('bookAppointment/', views.bookAppointment, name = "bookAppointment"),
     
 ]

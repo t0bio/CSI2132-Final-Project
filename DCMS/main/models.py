@@ -96,10 +96,11 @@ class Appointment_Procedure(models.Model):
 
 class Review(models.Model):
     review_id = models.IntegerField(primary_key=True)
-    communication = models.CharField(max_length=500)
-    professionalism = models.CharField(max_length=500)
-    cleanliness = models.CharField(max_length=500)
+    communication = models.IntegerField()
+    professionalism = models.IntegerField()
+    cleanliness = models.IntegerField()
     value = models.IntegerField()
+    comments = models.CharField(max_length=500)
     patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
 
     
