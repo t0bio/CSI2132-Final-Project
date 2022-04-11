@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Person,Employee,Patient,Appointment, Appointment_Procedure, Patient_record, Treatment
+from .models import Person,Employee,Patient,Appointment, Appointment_Procedure, Patient_record, Treatment, Invoice, Insurance_claim
 
-#Review,  Patient_billing, Patient_record, Fee_Charge, Insurance_claim, Invoice
+#Review,  Patient_billing, Patient_record, Fee_Charge, Insurance_claim
 
 # Register your models here.
 admin.site.register(Person)
@@ -17,5 +17,5 @@ admin.site.register(Treatment)
 #admin.site.register(Patient_billing)
 
 #admin.site.register(Fee_Charge)
-#admin.site.register(Insurance_claim)
-#admin.site.register(Invoice)
+admin.site.register(Insurance_claim)
+admin.site.register(Invoice)

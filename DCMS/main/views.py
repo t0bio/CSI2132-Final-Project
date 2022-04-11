@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Appointment, Employee, Patient, Person
+from .models import Appointment, Employee, Patient, Person, Invoice
 from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
 from django.contrib.auth.decorators import login_required
 from .decorators import allowed_users
@@ -32,7 +32,14 @@ def viewInfo(response):
 @login_required
 @allowed_users(allowed_roles=['patient'])
 def viewAppointments(response):
-    return render(response, "main/viewAppointments.html", {"appointements":Appointment})
+    app = Appointment.objects.filter(patient=response.user.patient,status = 'Not Complete')
+    return render(response, "main/viewAppointments.html", {"appointments":app})
+    
+@login_required
+@allowed_users(allowed_roles=['patient'])
+def viewInvoice(response):
+    app = Invoice.objects.filter(patient_id=response.user.patient)
+    return render(response, "main/viewInvoice.html", {"invoices":app})
 
 @login_required
 @allowed_users(allowed_roles=['receptionist'])

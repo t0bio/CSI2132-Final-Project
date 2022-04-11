@@ -143,7 +143,7 @@ class Invoice(models.Model):
     total_fee_charge = models.FloatField()
     discount = models.FloatField()
     penalty = models.FloatField()
-    insurance_claim_id = models.ForeignKey('Insurance_claim', on_delete=models.CASCADE)
+    insurance_claim_id = models.ForeignKey('Insurance_claim', on_delete=models.CASCADE,blank=True,null=True)
    
 class Patient_billing(models.Model):
      bill_id = models.IntegerField(primary_key=True)
