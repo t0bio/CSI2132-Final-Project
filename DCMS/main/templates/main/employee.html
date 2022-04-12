@@ -8,28 +8,7 @@
 
     <h1>Employee UI</h1>
     <!-- TODO: add a button that leads to dentist page -->
-    <form action="{{ /createnewprocedure }}" method="post">
-        <input type="hidden" name="_token" value="{{ csrf_token }}">
-        <input type="hidden" name="employee_id" value="{{ employee.id }}">
-        <input type="hidden" name="customer_id" value="{{ customer.id }}">
-        <input type="hidden" name="appointment_type" value="{{ appointment_type }}">
-        <input type="hidden" name="appointment_date" value="{{ appointment_date }}">
-        <input type="hidden" name="appointment_time" value="{{ appointment_time }}">
-        <input type="hidden" name="appointment_duration" value="{{ appointment_duration }}">
-        <input type="hidden" name="appointment_status" value="{{ appointment_status }}">
-        <input type="hidden" name="appointment_notes" value="{{ appointment_notes }}">
-        <input type="hidden" name="appointment_location" value="{{ appointment_location }}">
-        <input type="hidden" name="appointment_address" value="{{ appointment_address }}">
-        <input type="hidden" name="appointment_city" value="{{ appointment_city }}">
-        <input type="hidden" name="appointment_state" value="{{ appointment_state }}">
-        <input type="hidden" name="appointment_zip" value="{{ appointment_zip }}">
-        <input type="hidden" name="appointment_country" value="{{ appointment_country }}">
-        <input type="hidden" name="appointment_phone" value="{{ appointment_phone }}">
-        <input type="hidden" name="appointment_email" value="{{ appointment_email }}">
-        <input type="hidden" name="appointment_website" value="{{ appointment_website }}">
-        <input type="hidden" name="appointment_fax" value="{{ appointment_fax }}">
-        <input type="hidden" name="appointment_contact" value="{{ appointment_contact }}">
-        <input type="hidden" name="appointment_contact_phone>" value="{{ appointment_contact_phone }}">
+    <button><a href="/createnewprocedure">Create New Procedure</a></button>
     <button><a href="/viewInfo">View Patient Information</a></button>   
     <button><a href="/viewAppointments">View Appointments</a></button>
     <button><a href="/viewMedicalRecords">View Medical History</a></button>
