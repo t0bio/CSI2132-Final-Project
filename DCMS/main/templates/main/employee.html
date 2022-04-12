@@ -7,8 +7,8 @@
 <center>
 
     <h1>Employee UI</h1>
-    <! >
-    <form action="{{ url_for('appointment_create') }}" method="post">
+    <!-- TODO: add a button that leads to dentist page -->
+    <form action="{{ /createnewprocedure }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token }}">
         <input type="hidden" name="employee_id" value="{{ employee.id }}">
         <input type="hidden" name="customer_id" value="{{ customer.id }}">
@@ -29,8 +29,9 @@
         <input type="hidden" name="appointment_website" value="{{ appointment_website }}">
         <input type="hidden" name="appointment_fax" value="{{ appointment_fax }}">
         <input type="hidden" name="appointment_contact" value="{{ appointment_contact }}">
-        <input type="hidden" name="appointment_contact_phone
+        <input type="hidden" name="appointment_contact_phone>" value="{{ appointment_contact_phone }}">
     <button><a href="/viewInfo">View Patient Information</a></button>   
+    <button><a href="{{ /dentist}}"> <button>Dentist UI</button></a></button>
     <button><a href="/viewAppointments">View Appointments</a></button>
     <button><a href="/viewMedicalRecords">View Medical History</a></button>
     <button><a href="/createnewprocedure">Create Appointment Procedure</a></button>
