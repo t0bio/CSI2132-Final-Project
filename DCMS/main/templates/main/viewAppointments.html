@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-		{% for appointment in appointments%}
+		{% for appointment in appointments.all%}
           <tr>
             <td>{{ appointment.appointment_date }}</td>
             <td>{{ appointment.starttime }}</td>

@@ -96,10 +96,11 @@ class Appointment_Procedure(models.Model):
 
 class Review(models.Model):
     review_id = models.IntegerField(primary_key=True)
-    communication = models.CharField(max_length=500)
-    professionalism = models.CharField(max_length=500)
-    cleanliness = models.CharField(max_length=500)
+    communication = models.IntegerField()
+    professionalism = models.IntegerField()
+    cleanliness = models.IntegerField()
     value = models.IntegerField()
+    comments = models.CharField(max_length=500)
     patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
 
     
@@ -143,7 +144,7 @@ class Invoice(models.Model):
     total_fee_charge = models.FloatField()
     discount = models.FloatField()
     penalty = models.FloatField()
-    insurance_claim_id = models.ForeignKey('Insurance_claim', on_delete=models.CASCADE)
+    insurance_claim_id = models.ForeignKey('Insurance_claim', on_delete=models.CASCADE,blank=True,null=True)
    
 class Patient_billing(models.Model):
      bill_id = models.IntegerField(primary_key=True)

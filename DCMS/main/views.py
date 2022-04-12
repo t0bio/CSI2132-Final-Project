@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Appointment, Employee, Patient, Person
+from .models import Appointment, Employee, Patient, Person, Invoice, Patient_record, Review
 from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
 from django.contrib.auth.decorators import login_required
 from .decorators import allowed_users
@@ -32,8 +32,45 @@ def viewInfo(response):
 @login_required
 @allowed_users(allowed_roles=['patient'])
 def viewAppointments(response):
-    return render(response, "main/viewAppointments.html", {"appointements":Appointment})
+    app = Appointment.objects.filter(patient=response.user.patient,status = 'Not Complete')
+    return render(response, "main/viewAppointments.html", {"appointments":app})
+    
+@login_required
+@allowed_users(allowed_roles=['patient'])
+def viewInvoice(response):
+    app = Invoice.objects.filter(patient_id=response.user.patient)
+    return render(response, "main/viewInvoice.html", {"invoices":app})
+    
+@login_required
+@allowed_users(allowed_roles=['patient'])    
+def viewMedicalRecords(response):
+    app = Patient_record.objects.filter(patient=response.user.patient)
+    return render(response, "main/viewMedicalRecords.html", {"medicalRecords":app})
 
+@login_required
+@allowed_users(allowed_roles=['patient'])
+def bookAppointment(request):
+    if request.method == "POST":
+        form = SetAppointment(request.POST)
+
+        if form.is_valid():
+            app_id = form.cleaned_data["appointment_id"]
+            st = form.cleaned_data["starttime"]
+            app_date = form.cleaned_data["appointment_date"]
+            et = form.cleaned_data["endtime"]
+            app_type = form.cleaned_data["appointment_type"]
+            s = form.cleaned_data["status"]
+            ra = form.cleaned_data["room_assigned"]
+            em = form.cleaned_data["employee"]
+            pat = form.cleaned_data["patient"]
+
+
+            app = Appointment(appointment_id = app_id, starttime = st,  appointment_date = app_date, 
+                endtime = et, appointment_type = app_type, 
+                status = s, room_assigned =ra, employee = em, 
+                patient = pat)
+
+            app.save()
 @login_required
 @allowed_users(allowed_roles=['receptionist'])
 def searchUser(request):
