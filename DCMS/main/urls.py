@@ -20,5 +20,6 @@ urlpatterns = [
     path('set_appointment', views.set_appointment, name="set_appointment"),
     path('employee', views.employee, name = "employee"),
     path('patientUI', views.patient, name = "patientUI"),
+    path('search_patient_records/', views.search_patient_records, name = "search_patient_records")
     
 ]
