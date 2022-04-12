@@ -1,0 +1,33 @@
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <center>
+
+        {% if searched %}
+        <h1>You Searched for {{searched}}</h1>
+        <br>
+        {% for patient_record in searched_user%}
+        <a href="{% url 'show_patient_record' user.id%}">{{user}}</a>
+            <button><a href="/dentist">Return</a></button>
+            
+            <br>
+            <br>
+        {% endfor %}
+        {%else%}
+        <h1>Empty Field</h1>
+        <br>
+        <button><a href="/dentist">Return</a></button>
+
+        {% endif %}
+    </center>
+
+
+</div>
+    
+
+{% endblock %}
