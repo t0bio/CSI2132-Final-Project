@@ -151,10 +151,6 @@ def set_appointment(request):
 
     return render(request, "main/set_appointment.html", {"form":form})
 
-@login_required
-@allowed_users(allowed_roles=['dentist'])
-def retrieve_patient_record(request, patient_id):
-    
 
 
 
