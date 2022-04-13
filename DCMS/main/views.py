@@ -12,7 +12,8 @@ def index(response):
 @login_required
 @allowed_users(allowed_roles=['employee'])
 def employee(response):
-    return render(response, "main/employee.html", {})
+    app = Appointment.objects.filter(employee=response.user.employee)
+    return render(response, "main/employee.html", {"appointments":app})
 
 @login_required
 @allowed_users(allowed_roles=['receptionist'])

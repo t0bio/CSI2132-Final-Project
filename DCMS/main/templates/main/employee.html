@@ -9,16 +9,48 @@
     <h1>Employee UI</h1>
     <!-- TODO: add a button that leads to dentist page -->
     <!-- ><button><a href="/createnewprocedure">Create New Procedure</a></button> -->
-    <button><a href="/viewInfo">View Patient Information</a></button>   
-    <button><a href="/viewAppointments">View Appointments</a></button>
-    <button><a href="/viewMedicalRecords">View Medical History</a></button>
-    <!-- ><button><a href="/createnewprocedure">Create Appointment Procedure</a></button>-->
-	
-	<form class="search_class" method="POST" action="{% url 'employee_search_user' user.id%}" >
-	    {% csrf_token %}
-	    <input class="search_class" type="search" name="searched" placeholder="Search Patients by Last Name"> 
-	    <button class="search_class" type="submit"> Search </button>
-	</form>
+
+    <h2>Today's Appointments</h2>
+
+    <div class="container-fluid">
+    
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th cope="col">Patient</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Employee</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+            {% for appointment in appointments.all%}
+              <tr>
+                  
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{appointment.patient}}</td>
+                <td>{{ appointment.starttime }}</td>
+                <td>{{ appointment.endtime }}</td>
+                <td>{{ appointment.appointment_type }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>{{ appointment.employee }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    
+    </div>
+    
+  
+    
+    <button><a href="/patient">Return</a></button>
+    
+    
+
 
 
 </center>
