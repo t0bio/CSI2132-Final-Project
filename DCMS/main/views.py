@@ -82,7 +82,7 @@ def searchUser(request):
     else:
         return render(request, "main/search_user.html", {})
         
-@loging_required
+@login_required
 @allowed_users(allowed_roles=['employee'])
 def employee_search_user(request):
     if request.method == "POST":
