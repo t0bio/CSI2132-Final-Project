@@ -1,23 +1,22 @@
-{% extends 'employee.html' %}
+<!--Extends Base Template-->
+{% extends 'main/base.html' %}
 
-{% load crispy_forms_tags %}
 
 {% block content %}
+
 <center>
-    <h1>Create Appointment Procedure</h1>
+
+    <h1>Employee UI</h1>
+    <!-- TODO: add a button that leads to dentist page -->
+    <button><a href="/createnewprocedure">Create New Procedure</a></button>
+    <button><a href="/viewInfo">View Patient Information</a></button>   
+    <button><a href="/viewAppointments">View Appointments</a></button>
+    <button><a href="/viewMedicalRecords">View Medical History</a></button>
+    <button><a href="/createnewprocedure">Create Appointment Procedure</a></button>
+
+
 </center>
 
-<div class="container">
-
-    <form method="POST" action=" " class="uniForm">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit", name="save">Create New</button>
-        <button><a href="/employee">Return</a></button>
-    </form>
 
 
-</div>
-        
-
-{%endblock%}
+{% endblock %}
