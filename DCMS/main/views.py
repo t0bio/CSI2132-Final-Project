@@ -25,12 +25,12 @@ def patient(response):
      return render(response, "main/patientUI.html", {})
 
 @login_required
-@allowed_users(allowed_roles=['patient'])
+@allowed_users(allowed_roles=['patient', 'employee'])
 def viewInfo(response):
     return render(response, "main/viewInfo.html", {"user":response.user.patient})
     
 @login_required
-@allowed_users(allowed_roles=['patient'])
+@allowed_users(allowed_roles=['patient', 'employee'])
 def viewAppointments(response):
     app = Appointment.objects.filter(patient=response.user.patient,status = 'Not Complete')
     return render(response, "main/viewAppointments.html", {"appointments":app})
@@ -42,7 +42,7 @@ def viewInvoice(response):
     return render(response, "main/viewInvoice.html", {"invoices":app})
     
 @login_required
-@allowed_users(allowed_roles=['patient'])    
+@allowed_users(allowed_roles=['patient', 'employee'])    
 def viewMedicalRecords(response):
     app = Patient_record.objects.filter(patient=response.user.patient)
     return render(response, "main/viewMedicalRecords.html", {"medicalRecords":app})
