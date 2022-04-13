@@ -76,7 +76,7 @@ def bookAppointment(request):
 def searchUser(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        searched_user = Person.objects.filter(last_name__contains = searched)
+        searched_user = Person.objects.filter(str(patient)__contains = searched)
         return render(request, "main/search_user.html", {'searched':searched, 'searched_user':searched_user})
     
     else:
