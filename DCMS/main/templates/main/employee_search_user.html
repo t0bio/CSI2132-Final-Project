@@ -11,9 +11,13 @@
         {% if searched %}
         <h1>You Searched for {{searched}}</h1>
         <br>
-        {% for patient_record in searched_records%}
-        <a href="{% url 'show_patient_record' patient_record_id%}">{{patient_record}}</a>
-            <button><a href="/dentist">Return</a></button>
+        {% for user in searched_user%}
+        <a href="{% url 'show_user' user.id%}">{{user}}</a>
+            <button><a href="{% url 'show_patient_records' user.id%}"> View patient records </a></button>
+            <br>
+            <br>
+
+            <button><a href="/employee">Return</a></button>
             
             <br>
             <br>

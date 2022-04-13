@@ -81,6 +81,17 @@ def searchUser(request):
     
     else:
         return render(request, "main/search_user.html", {})
+        
+@loging_required
+@allowed_users(allowed_roles=['employee'])
+def employee_search_user(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        searched_user = Person.objects.filter(last_name__contains = searched)
+        return render(request, "main/employee_search_user.html", {'searched':searched, 'searched_user':searched_user})
+    
+    else:
+        return render(request, "main/employee_search_user.html", {})
 
 @login_required
 @allowed_users(allowed_roles=['receptionist'])
@@ -197,17 +208,6 @@ def set_appointment(request):
         form = SetAppointment()
 
     return render(request, "main/set_appointment.html", {"form":form})
-
-@login_required
-@allowed_users(allowed_roles=['employee'])
-def search_patient_records(request, patient_id):
-    if request.method == "POST":
-        searched = request.POST['searched']
-        searched_records = Patient_record.objects.filter(patient = searched)
-        return render(request, "main/search_patient_records.html", {'searched':searched, 'searched_records':searched_records})
-    
-    else:
-        return render(request, "main/show_patient_records.html", {})
 
 
 
