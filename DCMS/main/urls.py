@@ -18,7 +18,6 @@ urlpatterns = [
     path('show_user/<person_id>', views.show_user, name="show_user"),
     path('update_user/<person_id>', views.update_user, name="update_user"),
     path('set_appointment', views.set_appointment, name="set_appointment"),
-    path('employee', views.employee, name = "employee"),
     path('patientUI', views.patient, name = "patientUI"),
     path('viewInfo/', views.viewInfo, name = "viewInfo"),
     path('viewAppointments/', views.viewAppointments, name = "viewAppointments"),
