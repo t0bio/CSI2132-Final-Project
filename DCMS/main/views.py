@@ -72,7 +72,7 @@ def bookAppointment(request):
 
             app.save()
 @login_required
-@allowed_users(allowed_roles=['receptionist', 'employee'])
+@allowed_users(allowed_roles=['receptionist'])
 def searchUser(request):
     if request.method == "POST":
         searched = request.POST['searched']
