@@ -203,7 +203,7 @@ def set_appointment(request):
 def search_patient_records(request, patient_id):
     if request.method == "POST":
         searched = request.POST['searched']
-        searched_records = Patient_record.objects.filter(patient_contains = searched)
+        searched_records = Patient_record.objects.filter(patient.last_name__contains = searched)
         return render(request, "main/search_patient_records.html", {'searched':searched, 'searched_records':searched_records})
     
     else:
