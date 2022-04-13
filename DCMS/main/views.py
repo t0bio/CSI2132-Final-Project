@@ -88,8 +88,8 @@ def searchUser(request):
 def employee_search_user(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        searched_user = Person.objects.filter(last_name__contains = searched)
-        return render(request, "main/employee_search_user.html", {'searched':searched, 'searched_user':searched_user})
+        searched_patient = Patient.objects.filter(Person__contains = searched)
+        return render(request, "main/employee_search_user.html", {'searched':searched, 'searched_user':searched_patient})
     
     else:
         return render(request, "main/employee_search_user.html", {})
@@ -210,10 +210,7 @@ def set_appointment(request):
 
     return render(request, "main/set_appointment.html", {"form":form})
 
-
-
-
 @login_required
-@allowed_users(allowed_roles=['employee'])
-def viewPatientRecords(request):
-    return
+@allowed_users(allowed_roles=['receptionist'])
+def editPatient(request):
+    return render(request, "main/editPatient.html", {})

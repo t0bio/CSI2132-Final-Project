@@ -16,6 +16,8 @@
     <div class="container-fluid">
     
         <table class="table table-dark">
+
+    
             <thead>
               <tr>
                 <th scope="col">Date</th>
@@ -31,7 +33,6 @@
             <tbody>
             {% for appointment in appointments.all%}
               <tr>
-                  
                 <td>{{ appointment.appointment_date }}</td>
                 <td><a href="">{{ appointment.patient }}</a></td>
                 <td>{{ appointment.starttime }}</td>
@@ -43,16 +44,12 @@
             {% endfor %}
             </tbody>
           </table>
+
+
+        
     
-<<<<<<< HEAD
     </div>
     
-=======
-    </div>    
-    
-
-
->>>>>>> 0459d0f0e075bd0535e3d924527d7d50ce5cf928
 
 </center>
 

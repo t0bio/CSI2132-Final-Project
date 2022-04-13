@@ -24,7 +24,9 @@ urlpatterns = [
     path('viewInvoice/', views.viewInvoice, name = "viewInvoice"),
     path('viewMedicalRecords/', views.viewMedicalRecords, name = "viewMedicalRecords"),
     path('bookAppointment/', views.bookAppointment, name = "bookAppointment"),
-    path('employee/employeeViewPatient', views.viewPatientRecords, name = "employeeViewPatient"),
+    path('editPatient/', views.editPatient, name='editPatient'),
+    path('searchPatient/',views.employee_search_user,name='searchPatient'),
+    #path('employee/employeeViewPatient', views.viewPatientRecords, name = "employeeViewPatient"),
     #path('employee_search_patient/', views.search_patient_records, name = "employee_search_patient"),
     
 ]
