@@ -200,7 +200,7 @@ def set_appointment(request):
 
 @login_required
 @allowed_users(allowed_roles=['employee'])
-def retrieve_patient_record(request, patient_id):
+def search_patient_records(request, patient_id):
     if request.method == "POST":
         searched = request.POST['searched']
         searched_records = Patient_record.objects.filter(patient_contains = searched)
