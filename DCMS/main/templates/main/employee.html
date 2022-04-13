@@ -14,9 +14,9 @@
     <button><a href="/viewMedicalRecords">View Medical History</a></button>
     <!-- ><button><a href="/createnewprocedure">Create Appointment Procedure</a></button>-->
 	
-	<form class="search_class" method="POST" action="{% url 'search_patient_records' %}" >
+	<form class="search_class" method="POST" action="{% url 'searchuser' %}" >
 	    {% csrf_token %}
-	    <input class="search_class" type="search" name="searched" placeholder="Search patient records by Last Name"> 
+	    <input class="search_class" type="search" name="searched" placeholder="Search Patients by Last Name"> 
 	    <button class="search_class" type="submit"> Search </button>
 	</form>
 
