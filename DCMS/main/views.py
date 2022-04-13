@@ -76,7 +76,7 @@ def bookAppointment(request):
 def searchUser(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        searched_user = Person.objects.filter(last_name__contains = searched)
+        searched_user = Person.objects.filter(str(patient)__contains = searched)
         return render(request, "main/search_user.html", {'searched':searched, 'searched_user':searched_user})
     
     else:
@@ -200,7 +200,7 @@ def set_appointment(request):
 
 @login_required
 @allowed_users(allowed_roles=['employee'])
-def retrieve_patient_record(request, patient_id):
+def search_patient_records(request, patient_id):
     if request.method == "POST":
         searched = request.POST['searched']
         searched_records = Patient_record.objects.filter(patient_contains = searched)
