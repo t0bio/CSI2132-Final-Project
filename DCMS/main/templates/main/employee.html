@@ -9,8 +9,9 @@
     <h1>Employee UI</h1>
     <!-- TODO: add a button that leads to dentist page -->
     <!-- ><button><a href="/createnewprocedure">Create New Procedure</a></button> -->
+    <br>
 
-    <h2>Today's Appointments</h2>
+    <h2>Upcomming Appointments</h2>
 
     <div class="container-fluid">
     
@@ -32,7 +33,7 @@
               <tr>
                   
                 <td>{{ appointment.appointment_date }}</td>
-                <td>{{appointment.patient}}</td>
+                <td><a href="">{{ appointment.patient }}</a></td>
                 <td>{{ appointment.starttime }}</td>
                 <td>{{ appointment.endtime }}</td>
                 <td>{{ appointment.appointment_type }}</td>
@@ -45,13 +46,6 @@
     
     </div>
     
-  
-    
-    <button><a href="/patient">Return</a></button>
-    
-    
-
-
 
 </center>
 

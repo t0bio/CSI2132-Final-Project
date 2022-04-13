@@ -12,7 +12,7 @@ def index(response):
 @login_required
 @allowed_users(allowed_roles=['employee'])
 def employee(response):
-    app = Appointment.objects.filter(employee=response.user.employee)
+    app = Appointment.objects.filter(employee=response.user.employee, status = 'Not Complete')
     return render(response, "main/employee.html", {"appointments":app})
 
 @login_required
@@ -213,4 +213,6 @@ def set_appointment(request):
 
 
 
-            
+@login_required
+@allowed_users(allowed_roles=['employee'])
+def viewPatientRecords(request):
