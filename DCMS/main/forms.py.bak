@@ -1,5 +1,5 @@
 from django import forms
-from .models import Person, Patient, Employee, Appointment, Review
+from .models import Person, Patient, Employee, Appointment
 
 class RegisterUser(forms.ModelForm):
     first_name = forms.CharField(label="First Name", max_length = 50)

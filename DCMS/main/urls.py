@@ -26,6 +26,7 @@ urlpatterns = [
     path('bookAppointment/', views.bookAppointment, name = "bookAppointment"),
     path('editPatient/', views.editPatient, name='editPatient'),
     path('searchPatient/',views.employee_search_user,name='searchPatient'),
+    path('leaveAReview/',views.leaveAReview,name='leaveAReview'),
     #path('employee/employeeViewPatient', views.viewPatientRecords, name = "employeeViewPatient"),
     #path('employee_search_patient/', views.search_patient_records, name = "employee_search_patient"),
     
