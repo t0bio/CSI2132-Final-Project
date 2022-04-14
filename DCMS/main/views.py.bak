@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Appointment, Employee, Patient, Person, Invoice, Patient_record, Review
-from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
+from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment, BookAppointment, ReviewForm
 from django.contrib.auth.decorators import login_required
 from .decorators import allowed_users
 

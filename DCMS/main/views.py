@@ -60,7 +60,7 @@ def bookAppointment(request):
             app_date = form.cleaned_data["appointment_date"]
             et = form.cleaned_data["endtime"]
             app_type = form.cleaned_data["appointment_type"]
-            s = 'NOT Complete'
+            s = 'Not Complete'
             em = form.cleaned_data["employee"]
             pat = request.user.patient
 
