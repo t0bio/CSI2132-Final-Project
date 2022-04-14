@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Appointment, Employee, Patient, Person, Invoice, Patient_record, Review
-from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment
+from .forms import RegisterUser, RegisterPatient, RegisterEmployee, SetAppointment, BookAppointment, ReviewForm
 from django.contrib.auth.decorators import login_required
 from .decorators import allowed_users
 
@@ -52,7 +52,7 @@ def viewMedicalRecords(response):
 @allowed_users(allowed_roles=['patient'])
 def bookAppointment(request):
     if request.method == "POST":
-        form = SetAppointment(request.POST)
+        form = BookAppointment(request.POST)
 
         if form.is_valid():
             app_id = form.cleaned_data["appointment_id"]
@@ -60,18 +60,45 @@ def bookAppointment(request):
             app_date = form.cleaned_data["appointment_date"]
             et = form.cleaned_data["endtime"]
             app_type = form.cleaned_data["appointment_type"]
-            s = form.cleaned_data["status"]
-            ra = form.cleaned_data["room_assigned"]
+            s = 'NOT Complete'
             em = form.cleaned_data["employee"]
-            pat = form.cleaned_data["patient"]
+            pat = request.user.patient
 
 
             app = Appointment(appointment_id = app_id, starttime = st,  appointment_date = app_date, 
                 endtime = et, appointment_type = app_type, 
-                status = s, room_assigned =ra, employee = em, 
+                status = s, room_assigned =0, employee = em, 
                 patient = pat)
 
             app.save()
+    else:
+        form = BookAppointment()
+
+    return render(request, "main/bookAppointment.html", {"form":form})
+    
+def leaveAReview(request):
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+
+        if form.is_valid():
+            rev_id = form.cleaned_data["review_id"]
+            com = form.cleaned_data["communication"]
+            prof = form.cleaned_data["professionalism"]
+            clean = form.cleaned_data["cleanliness"]
+            val = form.cleaned_data["value"]
+            comment = form.cleaned_data["comments"]
+            pat = request.user.patient
+
+
+            app = Review(review_id = rev_id, communication = com,  professionalism = prof, 
+                cleanliness = clean, value = val, 
+                comments = comment, patient_id = pat)
+
+            app.save()
+    else:
+        form = ReviewForm()
+
+    return render(request, "main/bookAppointment.html", {"form":form})
 @login_required
 @allowed_users(allowed_roles=['receptionist'])
 def searchUser(request):
